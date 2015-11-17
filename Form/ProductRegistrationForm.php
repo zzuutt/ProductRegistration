@@ -52,7 +52,7 @@ class ProductRegistrationForm extends BaseForm
         $serialNumber = ProductRegistrationQuery::create()->findOneBySerialNumber($value);
         if ($serialNumber) {
             $context->addViolation(Translator::getInstance()->trans(
-                "This serial number %serial_number already exists.",
+                "This serial number %serialNumber already exists.",
                 array(
                     '%serialNumber' => $value
                 ),
