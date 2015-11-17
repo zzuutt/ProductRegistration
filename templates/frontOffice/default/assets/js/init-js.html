@@ -1,0 +1,28 @@
+<script type="text/javascript">
+    {literal}
+    $('#antenna_id_select').on('change', function() {
+        otherAntennaShowFields();
+    })
+
+    $(function () {
+        $('.datetime-picker').datetimepicker({
+            viewMode: 'years',
+    {/literal}
+            locale: '{lang attr="code"}'
+    {literal}
+        });
+
+        $('#number-product-registration').text($('#register-product-registration').prevAll('fieldset').length + 1);
+        otherAntennaShowFields();
+    });
+
+    /* Hiding other antenna fields if the antenna is not in the list. */
+    function otherAntennaShowFields() {
+        var data_id = $('#antenna_id_select option:selected').attr('data-id');
+        $('#other-antenna-fields').css(
+                'display',
+                (data_id === 'Other') ? 'block' : 'none'
+        );
+    }
+    {/literal}
+</script>

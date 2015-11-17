@@ -1,0 +1,54 @@
+<div class="row">
+    <div class="col-md-12 general-block-decorator">
+        <div class="row">
+            <div class="col-md-12 title title-without-tabs">{intl l="Product Registration" d="productregistration.bo.default"}</div>
+            <div class="col-md-12">
+                <div class="col-md-12">
+                    <div class="table-responsive">
+                        <table class="table table-striped table-left-aligned">
+                            <thead>
+                            <tr>
+                                <th>{intl l="Transceiver" d="productregistration.bo.default"}</th>
+                                <th>{intl l="Serial number" d="productregistration.bo.default"}</th>
+                                <th>{intl l="Date Purchase" d="productregistration.bo.default"}</th>
+                                <th>{intl l="Antenna" d="productregistration.bo.default"}</th>
+                                <th>{intl l="Where Purchase" d="productregistration.bo.default"}</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {loop type="product_registration" name="product_registration" customer_id="{$customer_id}"}
+                            <tr>
+                                {loop type="product" name="product_tranceiver" id="{$TRANSCEIVER_ID}" limit=1 visible="*"}
+                                <td><a href="{$URL}">{$TITLE}</a></td>
+                                {/loop}
+                                <td>{$SERIAL_NUMBER}</td>
+                                <td>{format_date date=$DATE_PURCHASE output="date"}</td>
+                                {if {$ANTENNA_ID} != '9999'}
+                                    {loop type="product" name="product_antenna" id="{$ANTENNA_ID}" limit=1 visible="*"}
+                                    <td><a href="{$URL}">{$TITLE}</a></td>
+                                    {/loop}
+                                {else}
+                                    <td>{$OTHER_ANTENNA}</td>
+                                {/if}
+                                <td>{$WHERE_PURCHASE}</td>
+                            </tr>
+                            {/loop}
+
+                            {elseloop rel="product_registration"}
+                            <tr>
+                                <td colspan="5">
+                                    <div class="alert alert-info">
+                                        {intl l="No Product registration for this customer." d="productregistration.bo.default"}
+                                    </div>
+                                </td>
+                            </tr>
+                            {/elseloop}
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

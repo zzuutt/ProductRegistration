@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<database defaultIdMethod="native" name="thelia" namespace="ProductRegistration\Model">
+          
+  	<table name="product_registration">
+        <column autoIncrement="true" name="id" primaryKey="true" required="true" type="INTEGER" />
+        <column name="transceiver_id" required="true" type="INTEGER" />
+        <column name="serial_number" required="true" size="50" type="VARCHAR" />
+        <column name="date_purchase" type="DATE" />
+        <column name="antenna_id" type="INTEGER" />
+        <column name="other_antenna" size="255" type="VARCHAR" />
+        <column name="where_purchase" size="255" type="VARCHAR" />
+        <column name="customer_id" required="true" type="INTEGER" />
+        <column name="warranty" type="INTEGER" />
+        <unique>
+            <unique-column name="serial_number" />
+        </unique>
+        <behavior name="timestampable" />
+  	</table>
+  
+
+    <external-schema filename="local/config/schema.xml" referenceOnly="true" />
+</database>

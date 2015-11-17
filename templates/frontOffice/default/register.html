@@ -1,0 +1,103 @@
+{default_translation_domain domain=$messageDomain}
+<fieldset id="register-product-registration" class="panel">
+    <div class="panel-heading"><span id="number-product-registration"></span>.&nbsp;{intl l='Product Registration' d="productregistration.fo.default"}</div>
+    <div class="panel-body">
+        {form_field form=$form field='transceiver_id'}
+        <div class="form-group {if $error} has-error{/if}">
+            <label class="control-label" for="{$label_attr.for}">{$label}{if $required} <span class="required">*</span>{/if}</label>
+            <div class="control-input">
+                <select name="{$name}" id="transceiver_id" class="form-control"{if $required} aria-required="true" required{/if}{if !isset($error_focus) && $error} autofocus{/if}>
+                <option value="" data-id="none"{if "$value" == '' } selected="selected"{/if}>-- {intl l="Select transceiver" d="productregistration.fo.default"} --</option>
+                {loop type="product" name="list_transceiver" category="{config key="Category_Recommandation_Transceiver"}" visible="*"}
+                {if {product_has_keyword product_id=$ID keyword_code="NewKey_WarrantyRegistrationDisplay"}}
+                <option value="{$ID}" data-id="{$ID}" {if "$value" == "$ID" } selected="selected"{/if}>{$TITLE}</option>
+                {/if}
+                {/loop}
+                </select>
+                {if $error }
+                <span class="help-block">{$message}</span>
+                {assign var="error_focus" value="true"}
+                {/if}
+            </div>
+        </div><!--/.form-group-->
+        {/form_field}
+        {form_field form=$form field='serial_number' }
+        <div class="form-group{if $error} has-error{/if}">
+            <label class="control-label" for="{$label_attr.for}">{$label}{if $required} <span class="required">*</span>{/if}</label>
+            <div class="control-input">
+                <input type="text" name="{$name}" id="{$label_attr.for}" class="form-control" maxlength="50" placeholder="{intl l='Placeholder Serial Number' d='productregistration.fo.default'}" value="{$value}" {if $required} aria-required="true" required{/if}{if !isset($error_focus) && $error} autofocus{/if}>
+                {if $error }
+                <span class="help-block">{$message}</span>
+                {assign var="error_focus" value="true"}
+                {/if}
+            </div>
+        </div><!--/.form-group-->
+        {/form_field}
+        {form_field form=$form field="date_purchase"}
+        <div class="form-group{if $error} has-error{/if}">
+            <label class="control-label" for="{$label_attr.for}">{$label}{if $required} <span class="required">*</span>{/if}</label>
+            <div class="control-input input-group">
+                <input name="{$name}"
+                       type="{$type}"
+                       class="form-control datetime-picker"
+                       data-date-format="{$label_attr.moment_js_date_format}"
+                       placeholder="{intl l={$label_attr.php_datetime_format} d='productregistration.fo.default'}"
+                       {if $value} value="{format_date date=$value format=$label_attr.php_datetime_format}"{/if}
+                       {if $required} aria-required="true" required{/if}{if !isset($error_focus) && $error} autofocus{/if}>
+                <span class="input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+            </div>
+        </div>
+        {/form_field}
+        {form_field form=$form field='antenna_id'}
+        <div class="form-group form-group-antenna {if $error} has-error{/if}">
+            <label class="control-label" for="{$label_attr.for}">{$label}{if $required} <span class="required">*</span>{/if}</label>
+            <div class="control-input">
+                <select name="{$name}" id="antenna_id_select" class="form-control"{if $required} aria-required="true" required{/if}{if !isset($error_focus) && $error} autofocus{/if}>
+                <option value="0" data-id="none"{if "$value" == '' } selected="selected"{/if}>-- {intl l="Select anntenna" d="productregistration.fo.default"} --</option>
+                <option value="0" data-id="none">{intl l="None" d="productregistration.fo.default"}</option>
+                {loop type="product" name="list_antenna" category="{config key="Category_Recommandation_Antenna"}" visible="*"}
+                {if {product_has_keyword product_id=$ID keyword_code="NewKey_WarrantyRegistrationDisplay"}}
+                <option value="{$ID}" data-id="{$ID}" {if "$value" == "$ID" } selected="selected"{/if}>{$TITLE}</option>
+                {/if}
+                {/loop}
+                <option value="9999" data-id="Other">{intl l="Other" d="productregistration.fo.default"}</option>
+                </select>
+                <span class="help-block-antenna">{intl l="Select the antenna bought simultaneously from your transceiver" d="productregistration.fo.default"}</span>
+                {if $error }
+                <span class="help-block">{$message}</span>
+                {assign var="error_focus" value="true"}
+                {/if}
+            </div>
+        </div><!--/.form-group-->
+        {/form_field}
+        <div id="other-antenna-fields">
+            {form_field form=$form field='other_antenna' }
+            <div class="form-group{if $error} has-error{/if}">
+                <label class="control-label"></label>
+                <div class="control-input">
+                    <input type="text" name="{$name}" id="{$label_attr.for}" class="form-control" maxlength="255" placeholder="{intl l='Placeholder other antenna' d='productregistration.fo.default'}" value="{$value}" {if $required} aria-required="true" required{/if}{if !isset($error_focus) && $error} autofocus{/if}>
+                    {if $error }
+                    <span class="help-block">{$message}</span>
+                    {assign var="error_focus" value="true"}
+                    {/if}
+                </div>
+            </div><!--/.form-group-->
+            {/form_field}
+        </div>
+        {form_field form=$form field='where_purchase' }
+        <div class="form-group{if $error} has-error{/if}">
+            <label class="control-label" for="{$label_attr.for}">{$label}{if $required} <span class="required">*</span>{/if}</label>
+            <div class="control-input">
+                <input type="text" name="{$name}" id="{$label_attr.for}" class="form-control" maxlength="255" placeholder="{intl l='Placeholder where purchase' d='productregistration.fo.default'}" value="{$value}" {if $required} aria-required="true" required{/if}{if !isset($error_focus) && $error} autofocus{/if}>
+                {if $error }
+                <span class="help-block">{$message}</span>
+                {assign var="error_focus" value="true"}
+                {/if}
+            </div>
+        </div><!--/.form-group-->
+        {/form_field}
+    </div>
+</fieldset>
+
