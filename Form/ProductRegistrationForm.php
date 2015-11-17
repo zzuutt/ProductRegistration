@@ -54,7 +54,7 @@ class ProductRegistrationForm extends BaseForm
             $context->addViolation(Translator::getInstance()->trans(
                 "This serial number %serial_number already exists.",
                 array(
-                    '$serialNumber' => $value
+                    '%serialNumber' => $value
                 ),
                 ProductRegistration::DOMAIN_NAME));
         }
