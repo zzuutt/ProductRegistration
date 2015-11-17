@@ -1,6 +1,7 @@
 # Product Registration
 
 This module generate the warranty registration form
+
 it's specific for my site, it use parameters other modules
 
 ## Installation
